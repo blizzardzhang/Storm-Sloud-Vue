@@ -1,3 +1,5 @@
+import type { RouteRecordNormalized } from 'vue-router'
+
 const modules = import.meta.glob("./modules/*.ts", {
   eager: true
 });

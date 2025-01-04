@@ -49,6 +49,7 @@ const useAppState = defineStore("appState", {
       this.hideMenu = value;
     },
 
+    // 获取异步菜单列表
     async fetchServerMenu() {
       let notifyInstance: NotificationReturn | null = null;
       try {
@@ -78,6 +79,11 @@ const useAppState = defineStore("appState", {
           closable: true
         });
       }
+    },
+
+    // 清空异步菜单列表
+    clearServerMenu() {
+      this.serverMenu = [];
     }
   }
 

@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia';
 import type { UserState, UserStoreState } from '@/store/modules/user/types.ts';
-import { login as userLogin, type LoginData } from "@/api/user";
+import { getUserInfo, login as userLogin, type LoginData, logout as userLogout} from '@/api/user'
 import { clearToken, setToken } from "@/utils/auth.ts";
+import { useAppStore } from '@/store'
 
 const useUserStore = defineStore('user', {
   state: (): UserStoreState => ({
     userInfo: {} as UserState,
     accessToken: '',
+    permissions: [] as string[]
   }),
   getters: {
     getUserInfo(state: UserStoreState): UserState {
@@ -25,9 +27,15 @@ const useUserStore = defineStore('user', {
     setAccessToken(accessToken: string) {
       this.accessToken = accessToken;
     },
-    // 重置用户
-    resetUserInfo() {
-      this.userInfo = {};
+    // 重置
+    resetInfo() {
+      this.$reset();
+    },
+
+    //info
+    async info() {
+      const res = await getUserInfo();
+      this.setUserInfo(res.data);
     },
 
 
@@ -40,7 +48,22 @@ const useUserStore = defineStore('user', {
         clearToken()
         throw error;
       }
-    }
+    },
+
+    logoutCallBack() {
+      const appStore = useAppStore();
+      this.resetInfo();
+      clearToken();
+      appStore.clearServerMenu();
+    },
+
+    async logout() {
+      try {
+        await userLogout();
+      } finally {
+        this.logoutCallBack();
+      }
+    },
 
   }
 });

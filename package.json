@@ -6,14 +6,11 @@
   "scripts": {
     "dev": "vite --open",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview",
-    "lint": "eslint .vue,.js,.jsx,.ts,.tsx ./ --max-warnings 0",
-    "lint:fix": "eslint .vue,.js,jsx,.ts,.tsx ./ --max-warnings 0 --fix",
-    "stylelint": "stylelint src/**/*.{html,vue,sass,less}",
-    "stylelint:fix": "stylelint --fix src/**/*.{html,vue,css,sass,less}"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.7.9",
+    "mitt": "^3.0.1",
     "pinia": "^2.3.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
@@ -26,7 +23,6 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.17.0",
-    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.7.0",
     "eslint-plugin-import": "^2.31.0",

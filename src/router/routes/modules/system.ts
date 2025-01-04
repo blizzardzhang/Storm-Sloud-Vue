@@ -8,6 +8,7 @@ const SYSTEM: AppRouteRecordRaw = {
     meta: {
         locale: 'menu.system',
         requiresAuth: true,
+        permission:'/system',
         icon: 'icon-dashboard',
         order: 1,
     },
@@ -19,7 +20,7 @@ const SYSTEM: AppRouteRecordRaw = {
             meta: {
                 locale: 'menu.system.user',
                 requiresAuth: true,
-                roles: ['*'],
+                permission:'/system/user',
             },
         },
         {
@@ -29,7 +30,7 @@ const SYSTEM: AppRouteRecordRaw = {
             meta: {
                 locale: 'menu.system.user',
                 requiresAuth: true,
-                roles: ['*'],
+                permission:'/system/user',
             },
         },
         {
@@ -39,7 +40,7 @@ const SYSTEM: AppRouteRecordRaw = {
             meta: {
                 locale: 'menu.system.menu',
                 requiresAuth: true,
-                roles: ['*'],
+                permission:'/system/menu',
             },
         },
         {
@@ -49,7 +50,7 @@ const SYSTEM: AppRouteRecordRaw = {
             meta: {
                 locale: 'menu.system.role',
                 requiresAuth: true,
-                roles: ['*'],
+                permission:'/system/role',
             },
         },
         {
@@ -59,7 +60,7 @@ const SYSTEM: AppRouteRecordRaw = {
             meta: {
                 locale: 'menu.system.client',
                 requiresAuth: true,
-                roles:['*']
+                permission:'/system/client',
             }
         }
     ],

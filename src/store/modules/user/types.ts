@@ -10,4 +10,5 @@ export interface UserState {
 export interface UserStoreState{
   userInfo: UserState;
   accessToken: string;
+  permissions: string[];
 }

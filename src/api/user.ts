@@ -8,9 +8,24 @@ export interface LoginData {
 // 登录接口
 export function login(data: LoginData) {
   return request({
-    url: "/auth/login",
-    method: "post",
+    url: '/auth/login',
+    method: 'post',
     data: data
+  });
+}
+// 登出
+export function logout() {
+  return request({
+    url: '/auth/logout',
+    method: 'get'
+  });
+}
+
+// 获取用户信息
+export function getUserInfo() {
+  return request({
+    url: '/system/user/info',
+    method: 'get',
   });
 }
 
