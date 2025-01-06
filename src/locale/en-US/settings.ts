@@ -26,4 +26,8 @@ export default {
   'settings.color.tooltip':
     '10 gradient colors generated according to the theme color',
   'settings.menuFromServer': 'Menu From Server',
+
+  'settings.user.userCenter': 'User Center',
+  'settings.user.settings': 'User Settings',
+  'settings.user.logout': 'Logout',
 };

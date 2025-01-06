@@ -3,7 +3,7 @@ import { DEFAULT_LAYOUT } from "@/router/routes/base.ts";
 
 const SYSTEM: AppRouteRecordRaw = {
     path: '/system',
-    name: 'system',
+    name: 'System',
     component: DEFAULT_LAYOUT,
     meta: {
         locale: 'menu.system',
@@ -15,7 +15,7 @@ const SYSTEM: AppRouteRecordRaw = {
     children: [
         {
             path: 'user',
-            name: 'user',
+            name: 'User',
             component: () => import('@/views/system/user/index.vue'),
             meta: {
                 locale: 'menu.system.user',
@@ -25,7 +25,7 @@ const SYSTEM: AppRouteRecordRaw = {
         },
         {
             path: 'user',
-            name: 'user',
+            name: 'User',
             component: () => import('@/views/system/user/index.vue'),
             meta: {
                 locale: 'menu.system.user',
@@ -35,7 +35,7 @@ const SYSTEM: AppRouteRecordRaw = {
         },
         {
             path: 'menu',
-            name: 'menu',
+            name: 'Menu',
             component: () => import('@/views/system/menu/index.vue'),
             meta: {
                 locale: 'menu.system.menu',
@@ -45,7 +45,7 @@ const SYSTEM: AppRouteRecordRaw = {
         },
         {
             path: 'role',
-            name: 'role',
+            name: 'Role',
             component: () => import('@/views/system/role/index.vue'),
             meta: {
                 locale: 'menu.system.role',
@@ -55,7 +55,7 @@ const SYSTEM: AppRouteRecordRaw = {
         },
         {
             path: 'client',
-            name: 'client',
+            name: 'Client',
             component: () => import('@/views/system/client/index.vue'),
             meta: {
                 locale: 'menu.system.client',

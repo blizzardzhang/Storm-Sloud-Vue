@@ -6,7 +6,7 @@ import { getMenuList } from '@/api/user.ts';
 import { Notification } from '@arco-design/web-vue';
 import type { NotificationReturn } from '@arco-design/web-vue/es/notification/interface';
 
-const useAppState = defineStore("appState", {
+const useAppStore = defineStore("appState", {
   state: (): AppState => ({ ...defaultSettings }),
 
   getters: {
@@ -89,4 +89,4 @@ const useAppState = defineStore("appState", {
 
 });
 
-export default useAppState;
+export default useAppStore;
