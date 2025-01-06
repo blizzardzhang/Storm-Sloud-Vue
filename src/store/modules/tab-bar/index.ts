@@ -29,7 +29,7 @@ const useAppStore = defineStore('tabBar', {
   }),
 
   getters:{
-    getTabLis():TagProps[]{
+    getTabList():TagProps[]{
       return this.tagList;
     },
     getCacheList():string[]{

@@ -30,3 +30,12 @@ export function listenerRouteChange(
     handler(latestRoute);
   }
 }
+
+/**
+ * 移除指定的路由事件监听器
+ *
+ * @returns 无返回值
+ */
+export function removeRouteListener() {
+  emitter.off(key);
+}

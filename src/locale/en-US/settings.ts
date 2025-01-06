@@ -30,4 +30,11 @@ export default {
   'settings.user.userCenter': 'User Center',
   'settings.user.settings': 'User Settings',
   'settings.user.logout': 'Logout',
+
+  'tag.reload': 'Reload Tag',
+  'tag.closeCurrent': 'Close Current Tag',
+  'tag.closeLeft': 'Close Left Tags',
+  'tag.closeRight': 'Close Right Tags',
+  'tag.closeOther': 'Close Other Tags',
+  'tag.closeAll': 'Close All Tags',
 };

@@ -30,4 +30,11 @@ export default {
   'settings.user.userCenter': '用户中心',
   'settings.user.settings': '用户设置',
   'settings.user.logout': '退出登录',
+
+  'tag.reload': '重新加载',
+  'tag.closeCurrent': '关闭当前标签页',
+  'tag.closeLeft': '关闭左侧标签页',
+  'tag.closeRight': '关闭右侧标签页',
+  'tag.closeOther': '关闭其他标签页',
+  'tag.closeAll': '关闭全部标签页',
 };
