@@ -24,16 +24,6 @@ const SYSTEM: AppRouteRecordRaw = {
             },
         },
         {
-            path: 'user',
-            name: 'User',
-            component: () => import('@/views/system/user/index.vue'),
-            meta: {
-                locale: 'menu.system.user',
-                requiresAuth: true,
-                permission:'/system/user',
-            },
-        },
-        {
             path: 'menu',
             name: 'Menu',
             component: () => import('@/views/system/menu/index.vue'),

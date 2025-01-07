@@ -30,10 +30,10 @@ export function getUserInfo() {
 }
 
 //获取用户菜单
-export function getMenuList(category: number) {
+export function getMenuList(params:{category:number}):Promise<any> {
   return request({
     url: '/system/menu/routes',
     method: 'get',
-    params: category
+    params: params
   });
 }

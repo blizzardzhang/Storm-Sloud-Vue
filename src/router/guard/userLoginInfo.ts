@@ -1,7 +1,7 @@
 import type { Router, LocationQueryRaw } from "vue-router";
-import NProgress from "nprogress";
 import { useUserStore } from "@/store";
-import { isLogin } from "@/utils/auth.ts"; // progress bar
+import { isLogin } from "@/utils/auth.ts";
+import NProgress from 'nprogress' // progress bar
 
 // 登录守卫，判断用户是否登录，如果没有登录则重定向到登录页面
 export default function setupUserLoginInfoGuard(router: Router) {

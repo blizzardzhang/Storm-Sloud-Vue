@@ -3,7 +3,7 @@ import { DEFAULT_LAYOUT } from '../base';
 
 const USER: AppRouteRecordRaw = {
   path: '/user',
-  name: 'User',
+  name: 'UserCenter',
   component: DEFAULT_LAYOUT,
   meta: {
     locale: 'menu.user',

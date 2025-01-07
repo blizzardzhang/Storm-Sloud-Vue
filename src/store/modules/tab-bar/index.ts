@@ -1,4 +1,4 @@
-import type { RouteRecordNormalized } from 'vue-router';
+import type { RouteLocationNormalized } from 'vue-router'
 import type { TabBarState, TagProps } from './types';
 import { defineStore } from 'pinia';
 import {
@@ -9,7 +9,7 @@ import {
 import { isString } from '@/utils/is';
 
 
-const formatTag = (route: RouteRecordNormalized): TagProps => {
+const formatTag = (route: RouteLocationNormalized): TagProps => {
   const { name, meta, fullPath, query } = route;
   return {
     title: meta.locale || "",
@@ -38,8 +38,8 @@ const useAppStore = defineStore('tabBar', {
   },
 
   actions:{
-    updateTabList(route: RouteRecordNormalized) {
-      if (BAN_LIST.includes(route.nam as string)) return;
+    updateTabList(route: RouteLocationNormalized) {
+      if (BAN_LIST.includes(route.name as string)) return;
       this.tagList.push(formatTag(route));
       if (!route.meta.ignoreCache) {
         this.cacheTabList.add(route.name as string);

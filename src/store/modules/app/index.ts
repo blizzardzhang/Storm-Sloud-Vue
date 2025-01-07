@@ -58,7 +58,8 @@ const useAppStore = defineStore("app", {
           content: "loading",
           closable: true
         });
-        const { data } = await getMenuList(1);
+        const { data } = await getMenuList({ category: 1 });
+        console.log("data", data);
         this.serverMenu = data;
         if (notifyInstance) {
           notifyInstance.close();
@@ -69,6 +70,7 @@ const useAppStore = defineStore("app", {
           closable: true
         });
       } catch (error) {
+        console.log("error",error);
         if (notifyInstance) {
           notifyInstance.close();
         }

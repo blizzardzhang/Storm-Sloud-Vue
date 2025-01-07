@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import type { TagProps } from "@/store/modules/tab-bar/types";
 import { useTabBarStore } from "@/store";
-import { computed } from "vue";
+import { computed, type PropType } from 'vue'
 import { useRoute, useRouter } from "vue-router";
 import { DEFAULT_ROUTE_NAME, REDIRECT_ROUTE_NAME } from "@/router/constants.ts";
 
@@ -116,7 +116,7 @@ const disabledRight = computed(() => {
 
 // 关闭标签
 const tagClose = (tag: TagProps, idx: number) => {
-  tabBarStore.deleteTag(tag, idx);
+  tabBarStore.deleteTag(idx, tag);
   if (itemData.fullPath === route.fullPath) {
     const latest = tagList.value[idx - 1]; // 获取队列的前一个tab
     router.push({ name: latest.name });
@@ -148,7 +148,7 @@ const actionSelect = async (value: any) => {
       router.push({ name: itemData.name });
     }
   } else if (value === ActionType.others) {
-    const filterList = tagList.value.filter((el, idx) => {
+    const filterList = tagList.value.filter((_el, idx) => {
       return idx === 0 || idx === index;
     });
     tabBarStore.freshTabList(filterList);
@@ -161,7 +161,7 @@ const actionSelect = async (value: any) => {
         path: route.fullPath,
       },
     });
-    tabBarStore.addCache(itemData);
+    tabBarStore.addCache(itemData.name);
   } else {
     tabBarStore.resetTabList();
     router.push({ name: DEFAULT_ROUTE_NAME });

@@ -218,7 +218,7 @@ const avatar = computed(() => {
 const triggerBtn = ref();
 // 弹出框触发器
 const refBtn = ref();
-// 切换菜单抽屉状态
+// 切换菜单抽屉状态 搭配default-layout父组件中的抽屉菜单联动
 const toggleDrawerMenu = inject("toggleDrawerMenu") as () => void;
 
 // 设置下拉按钮可见性

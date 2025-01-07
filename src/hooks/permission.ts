@@ -8,7 +8,6 @@ export default function usePermission() {
     accessRouter(route: RouteLocationNormalized | RouteRecordRaw) {
       return (
         !route.meta?.requiresAuth ||
-        !route.meta?.permission ||
         useStore.permissions?.includes(route.meta?.permission as string)
       );
     },
