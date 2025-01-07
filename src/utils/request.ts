@@ -16,6 +16,7 @@ request.interceptors.request.use(
     if (token){
       config.headers.Authorization = `Bearer ${token}`;
     }
+    config.headers.clientId = import.meta.env.VITE_CLIENT_ID;
     return config;
   },
   (error) => {
@@ -32,6 +33,11 @@ request.interceptors.response.use(
     }else if (res.code === 401){
       Message.error('登录过期，请重新登录')
       router.push('/login')
+    }else if (res.code === 403){
+      Message.error('权限不足')
+      router.push({name:'login'})
+    }else{
+      Message.error(res.msg);
     }
   },
   (error) => {

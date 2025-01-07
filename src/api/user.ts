@@ -1,12 +1,14 @@
 import { request } from "@/utils/request.ts";
 
 export interface LoginData {
+  clientId: string;
+  grantType: string;
   account: string;
   password: string;
 }
 
 // 登录接口
-export function login(data: LoginData) {
+export function login(data: any): Promise<any> {
   return request({
     url: '/auth/login',
     method: 'post',
@@ -14,7 +16,7 @@ export function login(data: LoginData) {
   });
 }
 // 登出
-export function logout() {
+export function logout() : Promise<any>{
   return request({
     url: '/auth/logout',
     method: 'get'
@@ -22,9 +24,9 @@ export function logout() {
 }
 
 // 获取用户信息
-export function getUserInfo() {
+export function getUserInfo(): Promise<any> {
   return request({
-    url: '/system/user/info',
+    url: '/user/user/info',
     method: 'get',
   });
 }

@@ -1,9 +1,8 @@
 export interface UserState {
-  id?: number;
+  id?: string;
   account?: string;
   name?: string;
   avatar?: string;
-  email?: string;
   phone?: string;
 }
 

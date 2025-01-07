@@ -6,7 +6,13 @@ import { useAppStore } from '@/store'
 
 const useUserStore = defineStore('user', {
   state: (): UserStoreState => ({
-    userInfo: {} as UserState,
+    userInfo: {
+      id: undefined,
+      account: undefined,
+      name: undefined,
+      avatar: undefined,
+      phone: undefined
+    } as UserState,
     accessToken: '',
     permissions: [] as string[]
   }),
@@ -32,6 +38,11 @@ const useUserStore = defineStore('user', {
       this.$reset();
     },
 
+    //设置权限
+    setPermissions(permissions: string[]) {
+      this.permissions = permissions;
+    },
+
     //info
     async info() {
       const res = await getUserInfo();
@@ -43,7 +54,9 @@ const useUserStore = defineStore('user', {
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm);
-        setToken(res.data.access_token);
+        console.log("res",res);
+        setToken(res.data.accessToken);
+        this.setPermissions(res.data.permissions);
       }catch (error) {
         clearToken()
         throw error;
