@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 
-defineProps({
+const { items } = defineProps({
   items: {
     type: Array as PropType<string[]>,
     default() {
@@ -25,8 +25,10 @@ defineProps({
 <style scoped lang="less">
 .container-breadcrumb {
   margin: 16px 0;
+
   :deep(.arco-breadcrumb-item) {
     color: rgb(var(--gray-6));
+
     &:last-child {
       color: rgb(var(--gray-8));
     }

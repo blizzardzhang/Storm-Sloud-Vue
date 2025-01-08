@@ -21,7 +21,7 @@
 </template>
 <script setup lang="ts">
 import TabItem from "./tab-item.vue";
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useAppStore, useTabBarStore } from "@/store";
 import { listenerRouteChange ,removeRouteListener } from "@/utils/route-listener.ts";
 import type { RouteLocationNormalized } from "vue-router";
@@ -39,7 +39,9 @@ const offsetTop = computed(() => {
 const tagList = computed(() => {
   return tabBarStore.getTabList;
 });
-
+onMounted(() => {
+  console.log("tabs",tabBarStore.getTabList);
+});
 // 监听导航栏变化，更新 affix 位置
 watch(
   () => appStore.navbar,
@@ -49,6 +51,9 @@ watch(
 );
 
 listenerRouteChange((route: RouteLocationNormalized) => {
+
+  console.log("rrr",!route.meta.noAffix &&
+    !tagList.value.some((tag) => tag.fullPath === route.fullPath));
   if (
     !route.meta.noAffix &&
     !tagList.value.some((tag) => tag.fullPath === route.fullPath)

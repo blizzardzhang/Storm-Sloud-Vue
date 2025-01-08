@@ -1,5 +1,4 @@
 import { ConfigEnv, loadEnv, UserConfig } from 'vite'
-import path from "node:path";
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { resolve } from 'path'
@@ -17,9 +16,20 @@ export default ({ mode }: ConfigEnv): UserConfig => {
   return{
     base: VITE_BASE_URL,
     resolve: {
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-      },
+      alias:[
+        {
+          find: '@',
+          replacement: resolve(__dirname, './src'),
+        },
+        {
+          find: 'vue-i18n',
+          replacement: 'vue-i18n/dist/vue-i18n.cjs.js', // Resolve the i18n warning issue
+        },
+        {
+          find: 'vue',
+          replacement: 'vue/dist/vue.esm-bundler.js', // compile template
+        },
+      ]
     },
     css: {
       preprocessorOptions: {

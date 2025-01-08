@@ -25,11 +25,22 @@
     </div>
     <ul class="right-side">
       <!--搜索框-->
+<!--      <li>-->
+<!--        <a-tooltip :content="$t('settings.search')">-->
+<!--          <a-button class="nav-btn" type="outline" :shape="'circle'">-->
+<!--            <template #icon>-->
+<!--              <icon-search />-->
+<!--            </template>-->
+<!--          </a-button>-->
+<!--        </a-tooltip>-->
+<!--      </li>-->
+      <!--GitHub-->
+
       <li>
-        <a-tooltip :content="$t('settings.search')">
-          <a-button class="nav-btn" type="outline" :shape="'circle'">
+        <a-tooltip :content="$t('navbar.github')">
+          <a-button class="nav-btn" type="outline" :shape="'circle'" @click="navToGitHub">
             <template #icon>
-              <icon-search />
+              <icon-github/>
             </template>
           </a-button>
         </a-tooltip>
@@ -37,7 +48,7 @@
 
       <!--语言-->
       <li>
-        <a-tooltip :content="$t('settings.language')">
+        <a-tooltip :content="$t('navbar.language')">
           <a-button
             class="nav-btn"
             type="outline"
@@ -52,7 +63,7 @@
         <a-dropdown trigger="click" @select="changeLocale as any">
           <div ref="triggerBtn" class="trigger-btn"></div>
           <template #content>
-            <a-option
+            <a-doption
               v-for="item in locales"
               :key="item.value"
               :value="item.value"
@@ -61,13 +72,13 @@
                 <icon-check v-show="item.value === currentLocale" />
               </template>
               {{ item.label }}
-            </a-option>
+            </a-doption>
           </template>
         </a-dropdown>
       </li>
       <!--主题-->
       <li>
-        <a-tooltip :content="theme === 'light'? $t('settings.navbar.theme.toDark') : $t('settings.navbar.theme.toLight')">
+        <a-tooltip :content="theme === 'light'? $t('navbar.theme.toDark') : $t('navbar.theme.toLight')">
           <a-button
             class="nav-btn"
             type="outline"
@@ -83,7 +94,7 @@
       </li>
       <!--通知-->
       <li>
-        <a-tooltip :content="$t('settings.navbar.alerts')">
+        <a-tooltip :content="$t('navbar.alerts')">
           <div class="message-box-trigger">
             <a-badge :count="9" dot>
               <a-button
@@ -113,7 +124,7 @@
       <li>
         <a-tooltip
           :content="
-          isFullscreen ? $t('settings.navbar.screen.toExi') : $t('settings.navbar.screen.toFull')"
+          isFullscreen ? $t('navbar.screen.toExi') : $t('navbar.screen.toFull')"
         >
           <a-button
             class="nav-btn"
@@ -158,7 +169,7 @@
               <a-space @click="$router.push({ name: 'Info' })">
                 <icon-user />
                 <span>
-                  {{ $t('settings.user.userCenter') }}
+                  {{ $t('navbar.user.userCenter') }}
                 </span>
               </a-space>
             </a-doption>
@@ -167,7 +178,7 @@
               <a-space @click="$router.push({ name: 'Setting' })">
                 <icon-settings />
                 <span>
-                  {{ $t('settings.user.settings') }}
+                  {{ $t('navbar.user.settings') }}
                 </span>
               </a-space>
             </a-doption>
@@ -176,7 +187,7 @@
               <a-space @click="handleLogout">
                 <icon-export />
                 <span>
-                  {{ $t('settings.user.logout') }}
+                  {{ $t('navbar.user.logout') }}
                 </span>
               </a-space>
             </a-doption>
@@ -221,6 +232,10 @@ const refBtn = ref();
 // 切换菜单抽屉状态 搭配default-layout父组件中的抽屉菜单联动
 const toggleDrawerMenu = inject("toggleDrawerMenu") as () => void;
 
+//代码仓
+const navToGitHub = () => {
+  window.open('https://github.com/blizzardzhang');
+};
 // 设置下拉按钮可见性
 const setDropDownVisible = () => {
   const event = new MouseEvent("click", {

@@ -28,7 +28,4 @@ export const NOT_FOUND_ROUTE: RouteRecordRaw = {
   path: '/:path(.*)*',
   name: 'notFound',
   component: () => import('@/views/not-found/index.vue'),
-  meta: {
-    hiddenInMenu: true,
-  },
 }

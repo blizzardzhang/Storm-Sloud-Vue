@@ -54,7 +54,6 @@ const useUserStore = defineStore('user', {
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm);
-        console.log("res",res);
         setToken(res.data.accessToken);
         this.setPermissions(res.data.permissions);
       }catch (error) {

@@ -54,18 +54,12 @@ import Menu from '@/components/menu/index.vue';
 import TabBar from '@/components/tab-bar/index.vue';
 import PageLayout from './page-layout.vue';
 import Footer from '@/components/footer/index.vue';
-import { useAppStore, useUserStore } from '@/store'
-import { computed, onMounted, provide, ref, watch } from 'vue'
+import { useAppStore } from '@/store'
+import { computed, onMounted, provide, ref } from 'vue'
 import useResponsive from '@/hooks/responsive.ts'
-import { useRoute } from 'vue-router'
-import usePermission from '@/hooks/permission.ts'
 
 const isInit = ref(false);
 const appStore = useAppStore();
-const userStore = useUserStore();
-const router = useRoute();
-const route = useRoute();
-const permissions = usePermission();
 const navbar = computed(() => appStore.navbar);
 const renderMenu = computed(() => appStore.menu && !appStore.topMenu);
 const hideMenu = computed(() => appStore.hideMenu);
@@ -109,15 +103,6 @@ onMounted(() => {
   isInit.value = true;
 });
 
-//监听用户权限变化，如果没有访问路由的权限则重定向到403页面
-watch(
-  () => userStore.permissions,
-  (permission) =>{
-    if (permission && !permissions.accessRouter(route)) {
-      router.push({ name: 'notFound' });
-    }
-  }
-);
 
 </script>
 

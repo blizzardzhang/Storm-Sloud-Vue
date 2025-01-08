@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { Message } from '@arco-design/web-vue';
+import { clearToken, getToken } from '@/utils/auth.ts'
 import router from '@/router';
-import { getToken } from '@/utils/auth.ts';
 
 export const request = axios.create({
   timeout: 30000,
   baseURL: import.meta.env.VITE_BASE_URL_PREFIX,
 });
+
 
 // 请求拦截器
 request.interceptors.request.use(
@@ -31,11 +32,11 @@ request.interceptors.response.use(
     if (res.code === 200) {
       return res;
     }else if (res.code === 401){
+      clearToken();
       Message.error('登录过期，请重新登录')
       router.push('/login')
     }else if (res.code === 403){
       Message.error('权限不足')
-      router.push({name:'login'})
     }else{
       Message.error(res.msg);
     }

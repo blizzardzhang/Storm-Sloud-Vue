@@ -20,7 +20,9 @@ export default function useMenuTree() {
   });
 
   // 监听 appRoute 的变化，并更新 menuTree
-  watch(appRoute, (newVal) => {
+  watch(
+    appRoute,
+    (newVal) => {
     menuTree.value = cloneDeep(newVal);
   }, { immediate: true });
 
