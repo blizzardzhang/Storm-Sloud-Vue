@@ -1,5 +1,6 @@
 export default {
   'menu.dashboard': 'Dashboard',
+  'menu.agriculture': 'Agriculture Production',
   'menu.user': 'User Center',
   'menu.user.info': 'User Info',
   'menu.user.setting': 'User Setting',

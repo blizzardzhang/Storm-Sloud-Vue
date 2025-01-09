@@ -1,5 +1,6 @@
 export default {
   'menu.dashboard': '仪表盘',
+  'menu.agriculture': '农业生产管理',
   'menu.user': '个人中心',
   'menu.user.info': '基本信息',
   'menu.user.setting': '用户设置',
