@@ -1,5 +1,5 @@
 //基本分页
-export interface Pagination{
+export interface Pagination {
   current: number;
   pageSize: number;
   total?: number;
@@ -26,6 +26,9 @@ export interface SysMenu{
   sort: number;
   children?: SysMenu[];
 }
+
+
+
 
 
 

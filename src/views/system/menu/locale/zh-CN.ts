@@ -10,7 +10,7 @@ export default {
   'system.menu.table.category':'分类',
   'system.menu.table.locale':'国际化',
   'system.menu.table.sort':'排序',
-  'system.menu.table.noAffix':'不固定在标签页',
+  'system.menu.table.noAffix':'不显示在标签页',
   'system.menu.table.activeMenu':'激活菜单',
   'system.menu.table.ignoreCache':'忽略缓存',
 

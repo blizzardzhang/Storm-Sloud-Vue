@@ -3,6 +3,8 @@ export default {
   'common.button': 'Button',
   'common.yes': 'Yes',
   'common.no': 'No',
+  'common.active': 'Active',
+  'common.locked': 'Locked',
 
   'common.success': 'Success',
   'common.fail': 'Failed',

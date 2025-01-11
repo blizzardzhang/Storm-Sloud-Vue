@@ -5,6 +5,9 @@ export default {
   'common.yes': '是',
   'common.no': '否',
 
+  'common.active': '正常',
+  'common.locked': '禁用',
+
   'common.success': '操作成功',
   'common.fail': '操作失败',
 
