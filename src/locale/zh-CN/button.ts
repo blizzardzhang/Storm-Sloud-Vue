@@ -7,5 +7,6 @@ export default {
   'button.confirm': '确定',
   'button.cancel': '取消',
   'button.create.children': '新建子项',
-  'button.grant': '权限配置',
+  'button.grantMenu': '授权菜单',
+  'button.grantRole': '授权角色',
 }

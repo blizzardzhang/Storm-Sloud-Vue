@@ -16,7 +16,7 @@ export function menuTree(param: any): Promise<any> {
 /**
  * 树选择器
  */
-export function menuSelectData(): Promise<any> {
+export function menuTreeSelect(): Promise<any> {
   return request({
     url: "/system/menu/treeSelect",
     method: "get",

@@ -10,9 +10,9 @@ export default {
   'client.table.activeTimeout': 'ActiveTimeout (seconds)',
   'client.table.timeout': 'Timeout (seconds)',
   'client.table.deviceType': 'DeviceType',
-  'client.table.status': 'Status',
-  'client.table.status.0': 'Active',
-  'client.table.status.1': 'Locked',
+  'client.table.isEnable': 'Is Enabled',
+  'client.table.isEnable.1': 'Active',
+  'client.table.isEnable.0': 'Locked',
 
 
   //modal 标题

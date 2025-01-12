@@ -402,7 +402,7 @@ import {
 import type { SysMenu } from "@/types/global.ts";
 import {
   deleteMenu,
-  menuSelectData,
+  menuTreeSelect,
   menuTree,
   saveOrUpdateMenu,
 } from "@/api/menu.ts";
@@ -657,7 +657,7 @@ const rootData: TreeDataType = {
 const treeData = ref<TreeDataType[]>([]);
 // 打开弹窗前操作
 const beforeModalOpen = async () => {
-  const { data } = await menuSelectData();
+  const { data } = await menuTreeSelect();
   // 组装树形控件数据 国际化
   data.forEach((item: any) => {
     const title = t(`${item.title}`);
@@ -681,6 +681,7 @@ const cancelModal = () => {
 //清空表单数据、关闭弹窗
 const clearForm = () => {
   formRef.value.resetFields();
+  formData.value = {...INITIAL_DATA};
   modalVisible.value = false;
 };
 

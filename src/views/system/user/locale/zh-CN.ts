@@ -4,12 +4,13 @@ export default {
   //table
   "user.table.name": "用户姓名",
   "user.table.account": "用户账号",
+  'user.table.roles': '角色信息',
   "user.table.phone": "用户电话",
   'user.table.avatar': '头像',
   'user.table.email': '邮箱',
-  'user.table.status': '状态',
-  'user.table.status.0': '正常',
-  'user.table.status.1': '禁用',
+  'user.table.isEnable': '启用状态',
+  'user.table.isEnable.1': '启用',
+  'user.table.isEnable.0': '未启用',
   'user.table.password': '密码',
   'user.table.confirmPassword': '确认密码',
 
@@ -21,6 +22,8 @@ export default {
   //drawer 标题
   'user.drawer.title.add':'新增用户',
   'user.drawer.title.edit':'编辑用户',
+
+  'user.drawer.grantRole':'分配角色',
 
   'user.drawer.form.basicInfo':'基本信息',
   'user.drawer.form.roleInfo':'角色信息',
@@ -35,5 +38,5 @@ export default {
   'user.placeholder.password':'请输入密码',
   'user.placeholder.confirmPassword':'请再次输入密码',
   'user.placeholder.avatar':'请上传头像',
-  'user.placeholder.status': '请选择状态',
+  'user.placeholder.isEnable': '请选择启用状态',
 };

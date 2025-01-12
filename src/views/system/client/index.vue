@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.system', 'menu.system.user']" />
+    <Breadcrumb :items="['menu.system', 'menu.system.client']" />
     <a-card class="general-card" :title="$t('system.client.list')">
       <!--水平分割线-->
       <a-divider style="margin-top: 0" />
@@ -78,10 +78,10 @@
         :row-selection="rowSelection"
       >
         <!--状态处理-->
-        <template #status="{ record }">
-          <span v-if="record.status === 0" class="circle"></span>
+        <template #isEnable="{ record }">
+          <span v-if="record.isEnable === 1" class="circle"></span>
           <span v-else class="circle pass"></span>
-          {{ $t(`client.table.status.${record.status}`) }}
+          {{ $t(`client.table.isEnable.${record.isEnable}`) }}
         </template>
         <!--授权标签处理-->
         <template #grantType="{ record }">
@@ -89,12 +89,12 @@
             {{ tag }}
           </a-tag>
         </template>
-        <template #actions="slot">
+        <template #actions="{ record }">
           <a-space>
             <a-button
               type="text"
               shape="round"
-              @click="handleEdit(slot.record)"
+              @click="handleEdit(record)"
             >
               <template #icon>
                 <icon-edit />
@@ -122,7 +122,9 @@
       :footer="false"
       width="auto"
       @cancel="cancelModal"
-      :title="isEdit ? $t('client.modal.title.edit') : $t('client.modal.title.add')"
+      :title="
+        isEdit ? $t('client.modal.title.edit') : $t('client.modal.title.add')
+      "
     >
       <a-form
         ref="formRef"
@@ -141,7 +143,10 @@
               validate-trigger="blur"
               label-col-flex="80px"
             >
-              <a-input v-model="formData.clientId" :placeholder="$t('client.placeholder.clientId')" />
+              <a-input
+                v-model="formData.clientId"
+                :placeholder="$t('client.placeholder.clientId')"
+              />
             </a-form-item>
           </a-col>
           <a-col :span="8">
@@ -222,7 +227,10 @@
               validate-trigger="blur"
               label-col-flex="80px"
             >
-              <a-select v-model="formData.deviceType" :placeholder="$t('client.placeholder.deviceType')">
+              <a-select
+                v-model="formData.deviceType"
+                :placeholder="$t('client.placeholder.deviceType')"
+              >
                 <a-option>pc</a-option>
                 <a-option>miniProgram</a-option>
                 <a-option>mobile app</a-option>
@@ -236,7 +244,11 @@
               validate-trigger="blur"
               label-col-flex="80px"
             >
-              <a-select v-model="formData.grantTypeList" multiple :placeholder="$t('client.placeholder.grantType')">
+              <a-select
+                v-model="formData.grantTypeList"
+                multiple
+                :placeholder="$t('client.placeholder.grantType')"
+              >
                 <a-option>password</a-option>
                 <a-option>client-credentials</a-option>
                 <a-option>authorization</a-option>
@@ -245,14 +257,14 @@
           </a-col>
           <a-col :span="8">
             <a-form-item
-              field="status"
-              :label="$t('client.table.status')"
+              field="isEnable"
+              :label="$t('client.table.isEnable')"
               validate-trigger="blur"
               label-col-flex="80px"
             >
-              <a-radio-group v-model="formData.status">
-                <a-radio :value="0">{{ $t("common.active") }}</a-radio>
-                <a-radio :value="1">{{ $t("common.locked") }}</a-radio>
+              <a-radio-group v-model="formData.isEnable">
+                <a-radio :value=1>{{ $t("client.table.isEnable.1") }}</a-radio>
+                <a-radio :value=0>{{ $t("client.table.isEnable.0") }}</a-radio>
               </a-radio-group>
             </a-form-item>
           </a-col>
@@ -281,7 +293,11 @@ import {
 import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import useLoading from "@/hooks/loading.ts";
-import { deleteClient, getClientPage, saveOrUpdateClient } from '@/api/client.ts'
+import {
+  deleteClient,
+  getClientPage,
+  saveOrUpdateClient,
+} from "@/api/client.ts";
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 
@@ -318,31 +334,20 @@ const handleSelectDensity = (
   size.value = val as SizeProps;
 };
 
-//modal
+//model
 const INITIAL_DATA = {
-  id: "",
-  clientId: "",
-  clientKey: "",
-  clientSecret: "",
-  additionalInfo: "",
+  id: '',
+  clientId: '',
+  clientKey: '',
+  clientSecret: '',
+  additionalInfo: '',
   grantTypeList: [] as string[],
   activeTimeout: 3600,
   timeout: -1,
-  deviceType: "",
-  status: 0,
+  deviceType: '',
+  isEnable: 0,
 };
 
-//新增
-const handleCreate = () => {
-  modalVisible.value = true;
-  isEdit.value = false;
-};
-//编辑
-const handleEdit = (record: any) => {
-  isEdit.value = true;
-  Object.assign(formData.value, record);
-  modalVisible.value = true;
-};
 const modalVisible = ref(false);
 const isEdit = ref(false);
 const formData = ref({ ...INITIAL_DATA });
@@ -400,9 +405,9 @@ const columns: TableColumnData[] = [
     dataIndex: "additionalInfo",
   },
   {
-    title: t("client.table.status"),
-    dataIndex: "status",
-    slotName: "status",
+    title: t("client.table.isEnable"),
+    dataIndex: "isEnable",
+    slotName: "isEnable",
   },
   {
     title: t("common.table.actions"),
@@ -411,6 +416,19 @@ const columns: TableColumnData[] = [
     width: 100,
   },
 ];
+
+
+//新增
+const handleCreate = () => {
+  modalVisible.value = true;
+  isEdit.value = false;
+};
+//编辑
+const handleEdit = (record: any) => {
+  isEdit.value = true;
+  Object.assign(formData.value, record)
+  modalVisible.value = true;
+};
 
 // 表格数据
 const renderData = ref([]);
@@ -442,7 +460,7 @@ const fetchData = async (
 fetchData();
 
 //删除
-const handleDelete = async() =>{
+const handleDelete = async () => {
   setLoading(true);
   const selected = selectedKeys.value;
   if (!selected.length) {
@@ -457,24 +475,29 @@ const handleDelete = async() =>{
     const res = await deleteClient(params);
     if (res.code === 200) {
       Message.success(t("common.success"));
-    }else {
+    } else {
       Message.error(t("common.fail"));
     }
-  }finally {
+  } finally {
     await fetchData();
     setLoading(false);
   }
-}
-
+};
 
 // 表单校验规则
 const rules = {
   clientId: [{ required: true, message: t("client.placeholder.clientId") }],
   clientKey: [{ required: true, message: t("client.placeholder.clientKey") }],
-  clientSecret: [{ required: true, message: t("client.placeholder.clientSecret") }],
+  clientSecret: [
+    { required: true, message: t("client.placeholder.clientSecret") },
+  ],
   deviceType: [{ required: true, message: t("client.placeholder.deviceType") }],
-  grantTypeList: [{ required: true, message: t("client.placeholder.grantType") }],
-  activeTimeout: [{ required: true, message: t("client.placeholder.activeTimeout") }],
+  grantTypeList: [
+    { required: true, message: t("client.placeholder.grantType") },
+  ],
+  activeTimeout: [
+    { required: true, message: t("client.placeholder.activeTimeout") },
+  ],
   timeout: [{ required: true, message: t("client.placeholder.timeout") }],
   status: [{ required: true, message: t("client.placeholder.status") }],
 };
@@ -522,6 +545,7 @@ const cancelModal = () => {
 //清空表单数据、关闭弹窗
 const clearForm = () => {
   formRef.value.resetFields();
+  formData.value = {...INITIAL_DATA};
   modalVisible.value = false;
 };
 </script>

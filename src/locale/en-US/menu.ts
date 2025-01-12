@@ -1,6 +1,7 @@
 export default {
   'menu.dashboard': 'Dashboard',
   'menu.agriculture': 'Agriculture Production',
+  'menu.miniProgram': 'Mini Program',
   'menu.blog': 'Blog System',
   'menu.user': 'User Center',
   'menu.user.info': 'User Info',

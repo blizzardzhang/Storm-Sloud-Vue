@@ -7,5 +7,6 @@ export default {
   'button.confirm': 'Confirm',
   'button.cancel': 'Cancel',
   'button.create.children': 'Create Children',
-  'button.grant': 'Grant',
+  'button.grantMenu': 'Grant Menu',
+  'button.grantRole': 'Grant Role',
 }

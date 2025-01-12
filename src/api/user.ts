@@ -26,10 +26,19 @@ export function logout() : Promise<any>{
   });
 }
 
+//给用户分配角色
+export function assignRole(param : any):Promise<any> {
+  return request({
+    url: '/system/user/allocateRole',
+    method: 'post',
+    data: param
+  });
+}
+
 // 获取用户信息
 export function getUserInfo(): Promise<any> {
   return request({
-    url: '/user/user/info',
+    url: '/system/user/info',
     method: 'get',
   });
 }
@@ -46,7 +55,7 @@ export function getMenuList(params:{category:number}):Promise<any> {
 //用户分页
 export function getUserPage(params:any):Promise<any> {
   return request({
-    url: '/user/user/page',
+    url: '/system/user/page',
     method: 'post',
     data: params
   });
@@ -55,7 +64,7 @@ export function getUserPage(params:any):Promise<any> {
 //新增
 export function saveUser(param : any):Promise<any> {
   return request({
-    url: '/user/user/save',
+    url: '/system/user/save',
     method: 'post',
     data: param
   });
@@ -64,7 +73,7 @@ export function saveUser(param : any):Promise<any> {
 //更新
 export function updateUser(param : any):Promise<any> {
   return request({
-    url: '/user/user/update',
+    url: '/system/user/update',
     method: 'post',
     data: param
   });
@@ -73,7 +82,7 @@ export function updateUser(param : any):Promise<any> {
 //删除
 export function deleteUser(param : any):Promise<any> {
   return request({
-    url: '/user/user/delete',
+    url: '/system/user/delete',
     method: 'get',
     params: param
   });

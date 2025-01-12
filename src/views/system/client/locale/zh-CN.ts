@@ -10,9 +10,9 @@ export default {
   'client.table.activeTimeout': 'Token有效期（秒）',
   'client.table.timeout': 'Token超时时间（秒）',
   'client.table.deviceType': '设备类型',
-  'client.table.status': '状态',
-  'client.table.status.0': '正常',
-  'client.table.status.1': '禁用',
+  'client.table.isEnable': '启用状态',
+  'client.table.isEnable.1': '启用',
+  'client.table.isEnable.0': '禁用',
 
   //modal 标题
   'client.modal.title.add':'新增客户端',

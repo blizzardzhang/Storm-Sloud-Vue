@@ -118,6 +118,7 @@
       <!--表格-->
       <a-table
         row-key="id"
+        :scroll="scroll"
         :loading="loading"
         :pagination="false"
         :columns="columns"
@@ -132,34 +133,31 @@
           <a-avatar>
             <img alt="avatar" :src="record.avatar" />
           </a-avatar>
-          </template>
-        <!--状态处理-->
-        <template #status="{ record }">
-          <span v-if="record.status === 0" class="circle"></span>
-          <span v-else class="circle pass"></span>
-          {{ $t(`user.table.status.${record.status}`) }}
         </template>
-        <template #actions="slot">
+        <template #roles="{ record }">
+          <a-tag v-for="role in record.roles" color="orange">
+            {{ role.name }}
+          </a-tag>
+        </template>
+        <!--状态处理-->
+        <template #isEnable="{ record }">
+          <span v-if="record.isEnable === 1" class="circle"></span>
+          <span v-else class="circle pass"></span>
+          {{ $t(`user.table.isEnable.${record.isEnable}`) }}
+        </template>
+        <template #actions="{ record }">
           <a-space>
-            <a-button
-              type="text"
-              shape="round"
-              @click="handleEdit(slot.record)"
-            >
+            <a-button type="text" shape="round" @click="handleEdit(record)">
               <template #icon>
                 <icon-edit />
               </template>
               {{ $t("button.edit") }}
             </a-button>
-            <a-button
-              type="text"
-              shape="round"
-              @click="handleGrant(slot.record)"
-            >
+            <a-button type="text" shape="round" @click="openGrant(record)">
               <template #icon>
                 <icon-plus />
               </template>
-              {{ $t("button.grant") }}
+              {{ $t("button.grantRole") }}
             </a-button>
           </a-space>
         </template>
@@ -259,13 +257,13 @@
               />
             </a-form-item>
             <a-form-item
-              field="status"
-              :label="$t('user.table.status')"
+              field="isEnable"
+              :label="$t('user.table.isEnable')"
               validate-trigger="blur"
             >
-              <a-radio-group v-model="formData.status">
-                <a-radio :value=0>{{ $t("common.active") }}</a-radio>
-                <a-radio :value=1>{{ $t("common.locked") }}</a-radio>
+              <a-radio-group v-model="formData.isEnable">
+                <a-radio :value="1">{{ $t("user.table.isEnable.1") }}</a-radio>
+                <a-radio :value="0">{{ $t("user.table.isEnable.0") }}</a-radio>
               </a-radio-group>
             </a-form-item>
           </a-collapse-item>
@@ -280,6 +278,21 @@
         </a-collapse>
       </a-form>
     </a-drawer>
+    <!--授权modal-->
+    <a-modal
+      :title="$t('user.drawer.grantRole')"
+      :mask-closable="false"
+      v-model:visible="modalVisible"
+      @ok="handleGrantSubmit"
+      @cancel="cancelModal"
+      width="auto"
+    >
+      <a-tree
+        :checkable="true"
+        v-model:checked-keys="selectedRole"
+        :data="roleData as TreeNodeData[]"
+      />
+    </a-modal>
   </div>
 </template>
 
@@ -290,16 +303,28 @@ import {
   Message,
   type TableColumnData,
   type TableRowSelection,
+  type TreeNodeData,
 } from "@arco-design/web-vue";
 import { useI18n } from "vue-i18n";
 import useLoading from "@/hooks/loading.ts";
-import { deleteUser, getUserPage, saveUser, updateUser } from "@/api/user.ts";
+import {
+  assignRole,
+  deleteUser,
+  getUserPage,
+  saveUser,
+  updateUser,
+} from "@/api/user.ts";
+import { getRoleList } from "@/api/role.ts";
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 
 const { t } = useI18n();
 //loading
 const { loading, setLoading } = useLoading(true);
+//表格滚动
+const scroll = {
+  x: 2000,
+}
 //密度
 const size = ref<SizeProps>("medium");
 // 表格密度选择
@@ -370,23 +395,34 @@ const columns: TableColumnData[] = [
     dataIndex: "account",
   },
   {
+    title: t("user.table.roles"),
+    dataIndex: "roles",
+    slotName: "roles",
+    ellipsis: true,
+    tooltip: true,
+  },
+  {
     title: t("user.table.phone"),
     dataIndex: "phone",
+    ellipsis: true,
+    tooltip: true,
   },
   {
     title: t("user.table.email"),
     dataIndex: "email",
+    ellipsis: true,
+    tooltip: true,
   },
   {
-    title: t("user.table.status"),
-    dataIndex: "status",
-    slotName: "status",
+    title: t("user.table.isEnable"),
+    dataIndex: "isEnable",
+    slotName: "isEnable",
   },
   {
     title: t("common.table.actions"),
     slotName: "actions",
     fixed: "right",
-    width: 140,
+    width: 220,
   },
 ];
 
@@ -397,19 +433,18 @@ const pagination = reactive({
   pageSize: 10,
 });
 
-
 // 新增或者编辑modal
 
 const INITIAL_DATA = {
-  id: '',
-  name: '',
-  password: '',
-  password2: '',
-  avatar: '',
-  account: '',
-  phone: '',
-  email: '',
-  status: 0,
+  id: "",
+  name: "",
+  password: "",
+  password2: "",
+  avatar: "",
+  account: "",
+  phone: "",
+  email: "",
+  isEnable: 0,
 };
 
 const drawerVisible = ref(false);
@@ -435,9 +470,74 @@ const rules = {
       },
     },
   ],
-  status: [{ required: true, message: t("user.placeholder.status") }],
+  isEnable: [{ required: true, message: t("user.placeholder.isEnable") }],
 };
 
+//授权modal
+const userId = ref("");
+const modalVisible = ref(false);
+const selectedRole = ref<string[]>([]);
+
+type TreeDataType = {
+  key: string;
+  title: string;
+};
+const roleData = ref<TreeDataType[]>([]);
+
+//加载角色列表
+const loadRoleList = async () => {
+  const res = await getRoleList();
+  if (res && res.code === 200) {
+    const list = res.data;
+    list.forEach((item: any) => {
+      let key = item.id;
+      roleData.value.push({
+        key,
+        title: item.name,
+      });
+    });
+  }
+};
+
+//授权按钮
+const openGrant = async (record: any) => {
+  userId.value = record.id;
+  modalVisible.value = true;
+  //获取用户角色
+  selectedRole.value = record.roles.map(
+    (item: { id: string }) => item.id,
+  ) as string[];
+  await loadRoleList();
+};
+
+//提交授权
+const handleGrantSubmit = async () => {
+  setLoading(true);
+  try {
+    const params = {
+      userIds: userId.value,
+      roleIds: selectedRole.value.join(","),
+    };
+    const res = await assignRole(params);
+    if (res.code === 200) {
+      Message.success(t("common.success"));
+    } else {
+      Message.error(t("common.fail"));
+    }
+  } finally {
+    cancelModal();
+    await fetchData();
+    setLoading(false);
+  }
+};
+
+//关闭授权modal
+const cancelModal = () => {
+  modalVisible.value = false;
+  userId.value = "";
+  selectedRole.value = [];
+  roleData.value = [];
+};
 
 //获取数据
 const fetchData = async (
@@ -478,7 +578,7 @@ const handleDelete = async () => {
     const res = await deleteUser(params);
     if (res.code === 200) {
       Message.success(t("common.success"));
-    }else {
+    } else {
       Message.error(t("common.fail"));
     }
   } finally {
@@ -507,7 +607,6 @@ const handleCreate = () => {
 //编辑
 const handleEdit = (record: any) => {
   isEdit.value = true;
-  //record.status = String(record.status);
   Object.assign(formData.value, record);
   drawerVisible.value = true;
 };
@@ -516,8 +615,8 @@ const handleEdit = (record: any) => {
 const handleSubmit = async () => {
   setLoading(true);
   try {
-    const valid = await formRef.value.validate();
-    if (valid) return;
+    // const valid = await formRef.value.validate();
+    // if (valid) return;
     if (!isEdit.value) {
       // 新增逻辑
       const res = await saveUser(formData.value);
@@ -532,7 +631,7 @@ const handleSubmit = async () => {
         account: formData.value.account,
         phone: formData.value.phone,
         email: formData.value.email,
-        status: formData.value.status,
+        isEnable: formData.value.isEnable,
       };
       const res = await updateUser(params);
       if (res.code === 200) {
@@ -554,12 +653,13 @@ const cancelDrawer = () => {
 //清空表单数据、关闭弹窗
 const clearForm = () => {
   formRef.value.resetFields();
+  formData.value = { ...INITIAL_DATA };
   drawerVisible.value = false;
 };
 </script>
 
 <style scoped lang="less">
-@import '@/style/page.less';
+@import "@/style/page.less";
 
 .form-input {
   background-color: #ffffff; /* 设置背景颜色为白色 */

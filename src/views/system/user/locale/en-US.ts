@@ -5,11 +5,12 @@ export default {
     'user.table.name': 'Name',
     'user.table.avatar': 'Avatar',
     'user.table.account': 'Account',
+    'user.table.roles': 'Roles',
     'user.table.phone': 'Phone',
     'user.table.email': 'Email',
-    'user.table.status': 'Status',
-    'user.table.status.0': 'Active',
-    'user.table.status.1': 'Locked',
+    'user.table.isEnable': 'Is Enabled',
+    'user.table.isEnable.1': 'Active',
+    'user.table.isEnable.0': 'Locked',
     'user.table.password': 'Password',
     'user.table.confirmPassword': 'Confirm Password',
 
@@ -22,6 +23,7 @@ export default {
     //drawer 标题
     'user.drawer.title.add':'Add User',
     'user.drawer.title.edit':'Edit User',
+    'user.drawer.grantRole':'Grant Role',
 
     'user.drawer.form.basicInfo':'Basic Information',
     'user.drawer.form.roleInfo':'Role Information',
@@ -39,7 +41,7 @@ export default {
     'user.placeholder.password':'Please enter password',
     'user.placeholder.confirmPassword':'Please confirm password',
     'user.placeholder.avatar':'Please upload avatar',
-    'user.placeholder.status': 'Please select status',
+    'user.placeholder.isEnable': 'Please select user status',
 
 
 
