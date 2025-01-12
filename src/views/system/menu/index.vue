@@ -578,7 +578,12 @@ const handleDelete = async () => {
     const params = {
       ids: selected.join(","),
     };
-    await deleteMenu(params);
+    const res = await deleteMenu(params);
+    if (res.code === 200) {
+      Message.success(t("common.success"));
+    }else {
+      Message.error(t("common.fail"));
+    }
   } finally {
     await fetchData({ ...formModel.value } as any);
     setLoading(false);

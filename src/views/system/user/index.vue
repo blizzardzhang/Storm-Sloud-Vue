@@ -475,7 +475,12 @@ const handleDelete = async () => {
     const params = {
       ids: selected.join(","),
     };
-    await deleteUser(params);
+    const res = await deleteUser(params);
+    if (res.code === 200) {
+      Message.success(t("common.success"));
+    }else {
+      Message.error(t("common.fail"));
+    }
   } finally {
     await fetchData();
     setLoading(false);

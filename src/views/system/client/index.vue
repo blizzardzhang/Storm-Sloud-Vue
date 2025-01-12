@@ -281,7 +281,7 @@ import {
 import { computed, reactive, ref } from "vue";
 import { useI18n } from "vue-i18n";
 import useLoading from "@/hooks/loading.ts";
-import { getClientPage, saveOrUpdateClient } from "@/api/client.ts";
+import { deleteClient, getClientPage, saveOrUpdateClient } from '@/api/client.ts'
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 
@@ -440,6 +440,31 @@ const fetchData = async (
   }
 };
 fetchData();
+
+//删除
+const handleDelete = async() =>{
+  setLoading(true);
+  const selected = selectedKeys.value;
+  if (!selected.length) {
+    Message.error(t("common.nothing.selected"));
+    setLoading(false);
+    return;
+  }
+  try {
+    const params = {
+      ids: selected.join(","),
+    };
+    const res = await deleteClient(params);
+    if (res.code === 200) {
+      Message.success(t("common.success"));
+    }else {
+      Message.error(t("common.fail"));
+    }
+  }finally {
+    await fetchData();
+    setLoading(false);
+  }
+}
 
 
 // 表单校验规则
