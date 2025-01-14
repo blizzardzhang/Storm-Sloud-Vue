@@ -310,7 +310,6 @@ const columns: TableColumnData[] = [
 ];
 // 表格数据
 const renderData = ref([]);
-// 表格列
 
 // 分页
 const pagination = reactive({
@@ -468,7 +467,7 @@ const handleDelete = async() => {
   setLoading(true);
   const selected = selectedKeys.value;
   if (!selected.length) {
-    Message.error(t("common.nothing.selected"));
+    Message.warning(t("common.nothing.selected"));
     setLoading(false);
     return;
   }

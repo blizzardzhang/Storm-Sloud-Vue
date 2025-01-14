@@ -377,11 +377,11 @@
         </a-row>
         <!--确定和取消按钮，在modal垂直和水平居中 按钮之间有一定间隔-->
         <a-space style="margin-top: 16px; justify-content: center">
-          <a-button type="primary" html-type="submit">
-            {{ $t("button.confirm") }}
-          </a-button>
           <a-button type="primary" status="warning" @click="cancelModal">
             {{ $t("button.cancel") }}
+          </a-button>
+          <a-button type="primary" html-type="submit">
+            {{ $t("button.confirm") }}
           </a-button>
         </a-space>
       </a-form>
@@ -570,7 +570,7 @@ const handleDelete = async () => {
   setLoading(true);
   const selected = selectedKeys.value;
   if (!selected.length) {
-    Message.error(t("common.nothing.selected"));
+    Message.warning(t("common.nothing.selected"));
     setLoading(false);
     return;
   }

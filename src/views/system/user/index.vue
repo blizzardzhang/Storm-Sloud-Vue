@@ -567,7 +567,7 @@ const handleDelete = async () => {
   setLoading(true);
   const selected = selectedKeys.value;
   if (!selected.length) {
-    Message.error(t("common.nothing.selected"));
+    Message.warning(t("common.nothing.selected"));
     setLoading(false);
     return;
   }

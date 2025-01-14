@@ -9,6 +9,7 @@ import localeSysMenu from '@/views/system/menu/locale/en-US';
 import localeSysUser from '@/views/system/user/locale/en-US';
 import localeSysRole from '@/views/system/role/locale/en-US';
 import localeSysClient from '@/views/system/client/locale/en-US';
+import localeSysOss from '@/views/resource/oss/locale/en-US';
 
 export default {
   ...localeCommon,
@@ -22,4 +23,5 @@ export default {
   ...localeSysUser,
   ...localeSysRole,
   ...localeSysClient,
+  ...localeSysOss,
 };
