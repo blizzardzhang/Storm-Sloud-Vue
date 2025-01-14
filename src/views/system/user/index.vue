@@ -123,7 +123,6 @@
         :pagination="false"
         :columns="columns"
         :data="renderData"
-        :bordered="false"
         :size="size"
         v-model:selected-keys="selectedKeys"
         :row-selection="rowSelection"

@@ -9,4 +9,5 @@ export default {
   'button.create.children': '新建子项',
   'button.grantMenu': '授权菜单',
   'button.grantRole': '授权角色',
+  'button.download': '下载',
 }

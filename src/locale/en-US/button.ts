@@ -9,4 +9,5 @@ export default {
   'button.create.children': 'Create Children',
   'button.grantMenu': 'Grant Menu',
   'button.grantRole': 'Grant Role',
+  'button.download': 'Download',
 }

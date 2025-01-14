@@ -44,4 +44,24 @@ export default {
   'resource.ossConfig.isHttpsPlaceholder': '请选择是否https',
   'resource.ossConfig.isEnablePlaceholder': '请选择启用状态',
 
+
+  //oss
+  'resource.oss.uploadTime':'上传时间',
+  'resource.oss.startTime':'开始时间',
+  'resource.oss.endTime':'结束时间',
+
+  'resource.oss.filter.service': '服务商',
+  'resource.oss.filter.fileName': '文件名称',
+  'resource.oss.filter.service.placeholder': '请输入服务商',
+  'resource.oss.filter.filename.placeholder': '请输入文件名称',
+
+
+  //table
+  'resource.oss.table.service': '服务商',
+  'resource.oss.table.fileName': '文件名',
+  'resource.oss.table.originalName': '原名',
+  'resource.oss.table.suffix': '后缀',
+  'resource.oss.table.url': '文件展示',
+  'resource.oss.table.createTime': '上传时间',
+
 }

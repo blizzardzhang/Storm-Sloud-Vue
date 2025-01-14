@@ -43,4 +43,27 @@ export default {
   'resource.ossConfig.accessPolicyPlaceholder': 'please select accessPolicy',
   'resource.ossConfig.isHttpsPlaceholder': 'please select https',
   'resource.ossConfig.isEnablePlaceholder': 'please select enable',
+
+
+  //oss
+  'resource.oss.uploadTime':'Upload Time',
+  'resource.oss.startTime':'start Time',
+  'resource.oss.endTime':'end Time',
+
+  'resource.oss.filter.service': 'Service Name',
+  'resource.oss.filter.fileName': 'File Name',
+  'resource.oss.filter.service.placeholder': 'please input service name',
+  'resource.oss.filter.filename.placeholder': 'please input file name',
+
+  //table
+  'resource.oss.table.service': 'Service Name',
+  'resource.oss.table.fileName': 'File Name',
+  'resource.oss.table.originalName': 'Original Name',
+  'resource.oss.table.suffix': 'Suffix',
+  'resource.oss.table.url': 'Display',
+  'resource.oss.table.createTime': 'Upload Time',
+
+
+
+
 }

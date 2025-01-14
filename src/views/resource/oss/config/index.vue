@@ -95,6 +95,7 @@
       <template #actions="{ record }">
         <a-space>
           <a-button
+            :disabled="record.isSystem === 1"
             type="text"
             shape="round"
             @click="handleEdit(record)"
@@ -394,6 +395,7 @@ const fetchData = async() =>{
   try {
     const res = await ossConfigList();
     if (res.code === 200) {
+      //const record = res.data;
       renderData.value = res.data;
     }else {
       Message.error(res.msg);
