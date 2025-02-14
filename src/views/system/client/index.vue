@@ -297,7 +297,7 @@ import {
   deleteClient,
   getClientPage,
   saveOrUpdateClient,
-} from "@/api/client.ts";
+} from "@/api/sys/client.ts";
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 

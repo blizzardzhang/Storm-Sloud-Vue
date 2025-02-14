@@ -1,5 +1,5 @@
 <script lang="tsx">
-import { compile, computed, defineComponent, h, onMounted, ref } from 'vue'
+import { compile, computed, defineComponent, h, ref } from 'vue'
 import { useI18n } from "vue-i18n";
 import { type RouteRecordRaw, useRoute, useRouter } from "vue-router";
 import useMenuTree from "./use-menu-tree";

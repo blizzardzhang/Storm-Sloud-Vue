@@ -3,6 +3,14 @@ import { Message } from '@arco-design/web-vue';
 import { clearToken, getToken } from '@/utils/auth.ts'
 import router from '@/router';
 
+
+export const globalHeaders = () => {
+  return {
+    Authorization: 'Bearer ' + getToken(),
+    clientId: import.meta.env.VITE_CLIENT_ID,
+  };
+};
+
 export const request = axios.create({
   timeout: 30000,
   baseURL: import.meta.env.VITE_BASE_URL_PREFIX,

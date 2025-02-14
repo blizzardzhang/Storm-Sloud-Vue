@@ -156,10 +156,13 @@
 
 import Breadcrumb from '@/components/breadcrumb/index.vue';
 import { Message, type TableColumnData, type TableRowSelection } from '@arco-design/web-vue'
-import { computed, reactive, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { deleteOss, downloadOss, getOssPage } from '@/api/oss.ts'
-import useLoading from '@/hooks/loading.ts'
+import { computed, reactive, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { deleteOss, getOssPage } from '@/api/oss/oss.ts'
+import useLoading from '@/hooks/loading.ts';
+import axios from 'axios';
+import FileSaver from 'file-saver'
+import { globalHeaders } from '@/utils/request.ts'
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 
@@ -325,11 +328,17 @@ const handleDelete = async () => {
 };
 
 //下载
-const handleDownload = (record: any) => {
+const handleDownload = async (record: any) => {
   const id = record.id;
-  const params = { id: id }
-  const res = downloadOss(params);
-  console.log("res",res);
+  const url = '/api/resource/oss/download?id=' + id;
+  const res = await axios({
+    method: 'get',
+    url: url,
+    responseType: 'blob', // 重要
+    headers: globalHeaders()
+  });
+  const blob = new Blob([res.data], { type: 'application/octet-stream' });
+  FileSaver.saveAs(blob, decodeURIComponent(res.headers['download-filename'] as string));
 };
 
 

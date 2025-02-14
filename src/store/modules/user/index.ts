@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import type { UserState, UserStoreState } from '@/store/modules/user/types.ts';
-import { getUserInfo, login as userLogin, type LoginData, logout as userLogout} from '@/api/user'
+import { getUserInfo, login as userLogin, type LoginData, logout as userLogout} from '@/api/sys/user.ts'
 import { clearToken, setToken } from "@/utils/auth.ts";
 import { useAppStore } from '@/store'
 

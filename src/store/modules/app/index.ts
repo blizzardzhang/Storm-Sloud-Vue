@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import type { AppState } from '@/store/modules/app/types.ts';
 import defaultSettings from '@/config/settings.json';
 import type { RouteRecordNormalized } from "vue-router";
-import { getMenuList } from '@/api/user.ts';
+import { getMenuList } from '@/api/sys/user.ts';
 import { Notification } from '@arco-design/web-vue';
 import type { NotificationReturn } from '@arco-design/web-vue/es/notification/interface';
 

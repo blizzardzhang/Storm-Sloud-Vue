@@ -312,8 +312,8 @@ import {
   getUserPage,
   saveUser,
   updateUser,
-} from "@/api/user.ts";
-import { getRoleList } from "@/api/role.ts";
+} from "@/api/sys/user.ts";
+import { getRoleList } from "@/api/sys/role.ts";
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 

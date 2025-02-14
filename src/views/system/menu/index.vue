@@ -405,7 +405,7 @@ import {
   menuTreeSelect,
   menuTree,
   saveOrUpdateMenu,
-} from "@/api/menu.ts";
+} from "@/api/sys/menu.ts";
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 

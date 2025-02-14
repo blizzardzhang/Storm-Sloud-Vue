@@ -169,7 +169,7 @@
               <a-space @click="$router.push({ name: 'Info' })">
                 <icon-user />
                 <span>
-                  {{ $t('navbar.user.userCenter') }}
+                  {{ userName }}
                 </span>
               </a-space>
             </a-doption>
@@ -220,6 +220,10 @@ const topMenu = computed(() => appStore.topMenu && appStore.menu);
 // 主题
 const theme = computed(() => {
   return appStore.theme;
+});
+//账号
+const userName = computed(() => {
+  return usrStore.userInfo.name;
 });
 // 头像
 const avatar = computed(() => {

@@ -37,6 +37,7 @@ export default ({ mode }: ConfigEnv): UserConfig => {
           // additionalData: `@import "@/style/global.less";`,
           javascriptEnabled: true,
           modifyVars: {
+            'arcoblue-6': '#f85959',
             // 'primary-color': '#1DA57A',
             // 'link-color': '#1DA57A',
             // 'border-radius-base': '2px',

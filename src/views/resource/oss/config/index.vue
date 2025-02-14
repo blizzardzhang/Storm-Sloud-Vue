@@ -229,7 +229,7 @@ import useLoading from '@/hooks/loading.ts';
 import { computed, reactive, ref } from 'vue';
 import { Message, type TableColumnData, type TableRowSelection } from '@arco-design/web-vue'
 import { useI18n } from 'vue-i18n';
-import { ossConfigDelete, ossConfigList, ossConfigSaveOrUpdate } from '@/api/ossConfig.ts'
+import { ossConfigDelete, ossConfigList, ossConfigSaveOrUpdate } from '@/api/oss/ossConfig.ts'
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 

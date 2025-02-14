@@ -225,8 +225,8 @@ import {
 import { useI18n } from "vue-i18n";
 import useLoading from "@/hooks/loading.ts";
 import { computed, reactive, ref } from "vue";
-import { deleteRole, getRoleDetail, getRolePage, grantRole, saveOrUpdateRole } from '@/api/role.ts'
-import { menuTreeSelect } from '@/api/menu.ts'
+import { deleteRole, getRoleDetail, getRolePage, grantRole, saveOrUpdateRole } from '@/api/sys/role.ts'
+import { menuTreeSelect } from '@/api/sys/menu.ts'
 
 type SizeProps = "mini" | "small" | "medium" | "large";
 
