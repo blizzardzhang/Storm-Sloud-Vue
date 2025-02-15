@@ -12,6 +12,7 @@ import localeSysClient from '@/views/system/client/locale/en-US';
 import localeSysOss from '@/views/resource/oss/locale/en-US';
 import localeSiteArtiCategory from '@/views/site/arti-category/locale/en-US';
 import localeSiteArtiTag from '@/views/site/arti-tags/locale/en-US';
+import localeSiteArticle from '@/views/site/article/locale/en-US';
 
 
 export default {
@@ -29,4 +30,5 @@ export default {
   ...localeSysOss,
   ...localeSiteArtiCategory,
   ...localeSiteArtiTag,
+  ...localeSiteArticle,
 };

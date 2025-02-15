@@ -120,11 +120,10 @@
 import { useI18n } from "vue-i18n";
 
 import { type FieldRule, type ValidatedError } from "@arco-design/web-vue";
-import { onMounted, ref } from "vue";
+import {ref } from "vue";
 import QrcodeVue from "qrcode.vue";
 import { useCounter } from "@/hooks/counter";
 import router from "@/router";
-import { getToken } from "@/utils/auth.ts";
 import { useUserStore } from "@/store";
 import useLoading from "@/hooks/loading.ts";
 

@@ -12,6 +12,8 @@ import localeSysClient from '@/views/system/client/locale/zh-CN';
 import localeSysOss from '@/views/resource/oss/locale/zh-CN';
 import localeSiteArtiCategory from '@/views/site/arti-category/locale/zh-CN';
 import localeSiteArtiTag from '@/views/site/arti-tags/locale/zh-CN';
+import localeSiteArticle from '@/views/site/article/locale/zh-CN';
+
 
 
 export default {
@@ -29,4 +31,5 @@ export default {
  ...localeSysOss,
  ...localeSiteArtiCategory,
  ...localeSiteArtiTag,
+ ...localeSiteArticle,
 }

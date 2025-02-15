@@ -125,8 +125,8 @@
       >
         <template #type="{ record }">
 <!--          如果type =1 显示技术 type =2 显示生活-->
-          <span v-if="record.type === 1">技术文章分类</span>
-          <span v-if="record.type === 2">生活小记分类</span>
+          <a-tag color="green" v-if="record.type === 1">技术文章分类</a-tag>
+          <a-tag color="green" v-else>生活小记分类</a-tag>
         </template>
         <template #actions="{ record }">
           <a-space>

@@ -10,6 +10,15 @@ export function getArtiCategoryPage(params: any): Promise<any> {
   })
 }
 
+//所有分类列表
+export function getArtiCategoryList(params: any): Promise<any> {
+  return request({
+    url: '/site/arti-category/list',
+    method: 'get',
+    params: params,
+  })
+}
+
 //删除
 export function deleteArtiCategory(params: any): Promise<any> {
   return request({
