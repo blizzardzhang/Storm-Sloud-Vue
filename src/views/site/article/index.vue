@@ -144,36 +144,11 @@ import {
 import { getArtiCategoryList } from "@/api/site/arti-category.ts";
 import useLoading from "@/hooks/loading.ts";
 import { getArticlePage } from "@/api/site/article.ts";
+import type { Article, Category } from './article-form.ts'
 
 const { setLoading } = useLoading(true);
 
-interface Category {
-  id: number;
-  name: string;
-  type: number; // 0: 全部, 1: 技术文章, 2: 生活小记
-}
 
-interface Article {
-  id: number;
-  type: number; // 0: 技术文章, 1: 生活小记
-  title: string;
-  author: string;
-  description: string;
-  content: string;
-  categoryId: string;
-  categoryName: string;
-  coverImg: string;
-  coverImgUrl: string;
-  tags: string;
-  tagList: string[];
-  publishTime: string;
-  views: number;
-  likes: number;
-  comments: number;
-  shares: number;
-  stars: number;
-  location?: string;
-}
 
 const router = useRouter();
 

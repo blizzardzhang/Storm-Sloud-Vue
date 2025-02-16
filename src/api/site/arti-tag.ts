@@ -9,6 +9,15 @@ export function getArtiTagPage(params: any): Promise<any> {
   })
 }
 
+//list
+export function getArtiTagList(params: any): Promise<any> {
+  return request({
+    url: '/site/arti-tag/list',
+    method: 'get',
+    params: params,
+  })
+}
+
 //删除
 export function deleteArtiTag(params: any): Promise<any> {
   return request({

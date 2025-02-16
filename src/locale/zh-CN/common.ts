@@ -11,6 +11,15 @@ export default {
   'common.success': '操作成功',
   'common.fail': '操作失败',
 
+  'common.next': '下一步',
+  'common.forward': '上一步',
+  'common.preview': '预览',
+  'common.publish': '发布',
+  'common.view': '查看',
+  'common.oneMore': '再次创建',
+  'common.submit.success': '提交成功',
+  'common.publish.success': '发布成功',
+
   'common.pop.delete': '确定要删除选中的记录吗？',
   'common.cancelled': '已取消',
 

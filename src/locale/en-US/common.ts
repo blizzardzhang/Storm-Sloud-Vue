@@ -9,6 +9,15 @@ export default {
   'common.success': 'Success',
   'common.fail': 'Failed',
 
+  'common.next': 'Next',
+  'common.forward': 'Forward',
+  'common.preview': 'Preview',
+  'common.publish': 'Publish',
+  'common.view': 'View',
+  'common.oneMore': 'One More',
+  'common.submit.success': 'Submit Success',
+  'common.publish.success': 'Publish Success',
+
 
   'common.pop.delete': 'Confirm To Delete ?',
   'common.cancelled': 'Cancelled',
